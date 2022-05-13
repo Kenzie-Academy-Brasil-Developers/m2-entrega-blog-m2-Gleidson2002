@@ -101,6 +101,7 @@ for(let i = 0 ;i< data.data.length;i++){
     btneditar.classList="editar"
     btneditar.innerText="Editar"
     btneditar.id=data.data[i].id
+
     let btndeletar = document.createElement("button")
     btndeletar.classList= "deletar"
     btndeletar.id= data.data[i].id
@@ -112,11 +113,20 @@ for(let i = 0 ;i< data.data.length;i++){
     editarcontent.appendChild(btndeletar)
     editarcontent.appendChild(datas)
     
+    btneditar.addEventListener("click",(e)=>{
+      e.preventDefault()
+      let target = e.target
+      console.log(target.id)
+      localStorage.setItem("peditar", target.id)
+      let janela = document.getElementById(`${target.id}1`)
+      janela.style.display ="flex"
+    
+    
+    })
    
     btndeletar.addEventListener("click", async(e)=>{
         e.preventDefault()
         const target= e.target
-       console.log(target)
         await Api.deletarpost(token,target.id)
         listarpagina(1)
     })
@@ -148,31 +158,23 @@ for(let i = 0 ;i< data.data.length;i++){
     bsubmitedit.innerText = "==>"
     janela.appendChild(bsubmitedit)
 
-  
- bsubmitedit.addEventListener("click",async(e)=>{
-   e.preventDefault()
-   const id3 =localStorage.getItem("peditar")
-   let texto = textedit.value
-   let data = {
-    "newContent": `${texto}`
-    
-   }
-   await Api.editarpost(token,id3,data)
-   localStorage.removeItem("peditar")
-   document.location.reload()
-
+    bsubmitedit.addEventListener("click",async(e)=>{
+      e.preventDefault()
+      const id3 =localStorage.getItem("peditar")
+      let texto = textedit.value
+      let data = {
+       "newContent": `${texto}`
+       
+      }
+      await Api.editarpost(token,id3,data)
+      localStorage.removeItem("peditar")
+      document.location.reload()
    
- })
- editarcontent.addEventListener("click",(e)=>{
-  e.preventDefault()
-  let target = e.target
-  console.log(target.id)
-  localStorage.setItem("peditar", target.id)
-  let janela = document.getElementById(`${target.id}1`)
-  janela.style.display ="flex"
+      
+    })
+    
 
 
-})
 } 
 
 

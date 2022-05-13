@@ -52,6 +52,7 @@ color:aliceblue;
 }
 body{
     background-color:#F3F3F3;
+    min-width: 850px;
 }
 #escrever{
    display: flex;
@@ -132,7 +133,7 @@ body{
 
 }
 .pcontent{
-    width: 18em;
+    width: 30em;
     word-wrap: break-word;
     color:darkgray;
     overflow-y:scroll;
