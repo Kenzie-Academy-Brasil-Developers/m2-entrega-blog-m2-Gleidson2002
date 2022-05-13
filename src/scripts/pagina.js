@@ -3,9 +3,7 @@ import {Api} from "./script.js"
 let token = localStorage.getItem("token")
 let id = localStorage.getItem("userid")
 const user = await Api.pegarusuario(token,id)
-
 let header = document.querySelector("header")
-
 let divusuario = document.createElement("div")
 divusuario.id= "divusuario"
 let imagem = document.createElement("img")
@@ -17,7 +15,6 @@ nome.innerText= user.username
 let logout = document.createElement("button")
 logout.id = "logout"
 logout.innerText="Logout"
-
 divusuario.appendChild(imagem)
 divusuario.appendChild(nome)
 header.appendChild(divusuario)
@@ -25,7 +22,7 @@ header.appendChild(logout)
 
 logout.addEventListener("click",(event)=>{
     localStorage.clear()
-    window.location.href = "../../index.html"
+    window.location.href = "/index.html"
 })
 // Fim do header
 
@@ -52,6 +49,7 @@ content.appendChild(criarpost)
 criarpost.appendChild(submit)
 body.appendChild(content)
 
+//botão da janela de editar
 submit.addEventListener("click", async(event)=>{
     event.preventDefault()
     let dados= {
@@ -65,6 +63,7 @@ submit.addEventListener("click", async(event)=>{
 
 })
 
+// gerandos cards
 
 let content2 = document.createElement("div")
 content2.id="content2"
@@ -164,6 +163,7 @@ for(let i = 0 ;i< data.data.length;i++){
     bsubmitedit.innerText = "==>"
     janela.appendChild(bsubmitedit)
 
+    
     bsubmitedit.addEventListener("click",async(e)=>{
       e.preventDefault()
       const id3 =localStorage.getItem("peditar")
