@@ -15,7 +15,7 @@ botao.addEventListener("click",async(event)=>{
     const status = await Api.fazerLogin(data)
     status.message
     if(status.status != "error"){
-       window.location.href = "/pagina.html"
+       window.location.href = "pagina.html"
     }
     else{
         alert(status.message)

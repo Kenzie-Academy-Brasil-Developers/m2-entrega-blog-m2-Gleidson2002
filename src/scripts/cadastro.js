@@ -28,5 +28,5 @@ Api.fazerCadastro(dados)
 let botaologin = document.getElementById("submit2")
 botaologin.addEventListener("click",(event)=>{
 event.preventDefault()
-window.location.href = "/login.html"
+window.location.href = "login.html"
 })

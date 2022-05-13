@@ -22,7 +22,7 @@ header.appendChild(logout)
 
 logout.addEventListener("click",(event)=>{
     localStorage.clear()
-    window.location.href = "/index.html"
+    window.location.href = "index.html"
 })
 // Fim do header
 
