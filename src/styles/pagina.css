@@ -197,6 +197,7 @@ body{
     border:none;
     border-radius: 5px;
 }
-#textedit{
+.textedit{
     width: 100%;
+
 }

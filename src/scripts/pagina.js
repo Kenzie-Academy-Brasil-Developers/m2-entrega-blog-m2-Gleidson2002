@@ -17,6 +17,7 @@ nome.innerText= user.username
 let logout = document.createElement("button")
 logout.id = "logout"
 logout.innerText="Logout"
+
 divusuario.appendChild(imagem)
 divusuario.appendChild(nome)
 header.appendChild(divusuario)
@@ -64,7 +65,6 @@ submit.addEventListener("click", async(event)=>{
 
 })
 
-// paginas
 
 let content2 = document.createElement("div")
 content2.id="content2"
@@ -87,9 +87,10 @@ for(let i = 0 ;i< data.data.length;i++){
   conteudo.classList = "conteudo"
   conteudo.innerHTML = `
   <p class= "nomeuser">${data.data[i].owner.username}</p>
-  <p class ="pcontent">${data.data[i].post}</p>
+  <p class ="pcontent" id= "${data.data[i].id}2">${data.data[i].post}</p>
 
   `
+  
   let editarcontent = document.createElement("div")
   editarcontent.classList = "editarcontent"
   
@@ -112,15 +113,19 @@ for(let i = 0 ;i< data.data.length;i++){
     editarcontent.appendChild(btneditar)
     editarcontent.appendChild(btndeletar)
     editarcontent.appendChild(datas)
-    
+
     btneditar.addEventListener("click",(e)=>{
+      
       e.preventDefault()
       let target = e.target
-      console.log(target.id)
+      let value = document.getElementById(target.id+"2")
+      //value.innerText
+      
       localStorage.setItem("peditar", target.id)
       let janela = document.getElementById(`${target.id}1`)
       janela.style.display ="flex"
-    
+      
+      textedit.innerText= value.innerText
     
     })
    
@@ -134,7 +139,7 @@ for(let i = 0 ;i< data.data.length;i++){
   }else{
      editarcontent.innerHTML= `
      <div class = "fantasma"> </div>
-     <p class = criado>${data.data[i].createdAt}</p>`
+     <p class = "criado">${data.data[i].createdAt}</p>`
   }
   
 
@@ -150,7 +155,8 @@ for(let i = 0 ;i< data.data.length;i++){
     janela.id = `${data.data[i].id}1`
     
     let textedit= document.createElement("textarea")
-    textedit.id= "textedit"
+    textedit.classList= "textedit"
+    
     janela.appendChild(textedit)
     content2.appendChild(janela)
     let bsubmitedit = document.createElement("button")
@@ -166,6 +172,7 @@ for(let i = 0 ;i< data.data.length;i++){
        "newContent": `${texto}`
        
       }
+
       await Api.editarpost(token,id3,data)
       localStorage.removeItem("peditar")
       document.location.reload()
